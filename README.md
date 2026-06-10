@@ -42,39 +42,33 @@ min_x  ½‖MHx - y‖²  +  λ · TV(x)
 
 ```bash
 git clone https://github.com/DHRVIR/super_resolution_reconstruction.git
-cd super-resolution-reconstruction
+cd super_resolution_reconstruction
 pip install -r requirements.txt
 ```
 
 ### 2. Add data
 
-Download BSD68 from
+Five BSD68 images are included in `data/` for convenience. To run on more
+images, download the full BSD68 set from
 [Kaggle](https://www.kaggle.com/code/mpwolke/berkeley-segmentation-dataset-68/input?select=BSD68)
-and place `.png` files in `data/`:
-
-```
-data/
-  test001.png
-  test002.png
-  ...
-```
+and place the `.png` files in `data/`.
 
 ---
 
 ## Usage
 
 ```bash
-# Full pipeline — reconstruction + all sensitivity sweeps (~15 min)
+# Full pipeline — reconstruction + all sensitivity sweeps (~5 min)
 python main.py
 
 # Reconstruction only, no sensitivity sweeps (~1 min)
 python main.py --no-sensitivity
 
-# Hyperparameter tuning grids (~30 min)
+# Hyperparameter tuning grids (~3 min)
 python main.py --tune
 
 # Specific image
-python main.py --image data/test042.png
+python main.py --image data/test001.png
 
 # Custom degradation parameters
 python main.py --blur-sigma 1.5 --downsample 4 --noise-sigma 0.02 --lambda-tv 0.005
@@ -184,4 +178,10 @@ Convergence guaranteed when **τ · σ ≤ 1/8**
 
 ## License
 
-MIT
+The code in this repository is licensed under the MIT License.
+
+The five images in `data/` are sourced from the
+[Berkeley Segmentation Dataset 68](https://www.kaggle.com/code/mpwolke/berkeley-segmentation-dataset-68)
+Kaggle notebook, released under the
+[Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0).
+They are included solely for academic reproducibility.
